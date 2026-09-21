@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="pt-BR" target-language="en-US" datatype="plaintext" original="ng.template">
+    <body>
+      <trans-unit id="brandName"><source>Golden Raspberry</source><target>Golden Raspberry</target></trans-unit>
+      <trans-unit id="brandSubtitle"><source>Arquivo de filmes</source><target>Movie archive</target></trans-unit>
+      <trans-unit id="mainNavigation"><source>Navegação principal</source><target>Main navigation</target></trans-unit>
+      <trans-unit id="dashboardNav"><source>Dashboard</source><target>Dashboard</target></trans-unit>
+      <trans-unit id="moviesNav"><source>Todos os filmes</source><target>All movies</target></trans-unit>
+      <trans-unit id="challengeFooter"><source>Desafio Outsera&lt;br /&gt;Golden Raspberry Awards</source><target>Outsera challenge&lt;br /&gt;Golden Raspberry Awards</target></trans-unit>
+      <trans-unit id="dashboardEyebrow"><source>Inteligência de premiações</source><target>Awards intelligence</target></trans-unit>
+      <trans-unit id="dashboardTitle"><source>Dashboard</source><target>Dashboard</target></trans-unit>
+      <trans-unit id="dashboardSubtitle"><source>Uma visão rápida dos padrões mais marcantes do Golden Raspberry Awards.</source><target>A quick view of the most notable Golden Raspberry Awards patterns.</target></trans-unit>
+      <trans-unit id="loadingAwards"><source>Carregando dados das premiações...</source><target>Loading awards data...</target></trans-unit>
+      <trans-unit id="multipleWinnersTitle"><source>Anos com múltiplos vencedores</source><target>Years with multiple winners</target></trans-unit>
+      <trans-unit id="multipleWinnersKicker"><source>01 / VITÓRIAS REPETIDAS</source><target>01 / REPEATED WINS</target></trans-unit>
+      <trans-unit id="multipleWinnersCaption"><source>Anos com mais de um filme vencedor</source><target>Years with more than one winning film</target></trans-unit>
+      <trans-unit id="yearHeader"><source>Ano</source><target>Year</target></trans-unit>
+      <trans-unit id="winnerCountHeader"><source>Quantidade de vencedores</source><target>Number of winners</target></trans-unit>
+      <trans-unit id="filmsLabel"><source>filmes</source><target>films</target></trans-unit>
+      <trans-unit id="topStudiosTitle"><source>Estúdios com mais vitórias</source><target>Studios with the most wins</target></trans-unit>
+      <trans-unit id="topStudiosKicker"><source>02 / OS LÍDERES</source><target>02 / THE LEADERS</target></trans-unit>
+      <trans-unit id="topThreeStudios"><source>Top 3</source><target>Top 3</target></trans-unit>
+      <trans-unit id="intervalsTitle"><source>Intervalos entre vitórias</source><target>Intervals between wins</target></trans-unit>
+      <trans-unit id="producerIntervalsKicker"><source>03 / HISTÓRICO DE PRODUTORES</source><target>03 / PRODUCER HISTORY</target></trans-unit>
+      <trans-unit id="shortestLabel"><source>Menor</source><target>Shortest</target></trans-unit>
+      <trans-unit id="longestLabel"><source>Maior</source><target>Longest</target></trans-unit>
+      <trans-unit id="winnersByYearTitle"><source>Vencedores por ano</source><target>Winners by year</target></trans-unit>
+      <trans-unit id="archiveSearchKicker"><source>04 / EXPLORE O ARQUIVO</source><target>04 / EXPLORE THE ARCHIVE</target></trans-unit>
+      <trans-unit id="searchYearLabel"><source>Buscar ano</source><target>Search year</target></trans-unit>
+      <trans-unit id="yearPlaceholder"><source>Ano</source><target>Year</target></trans-unit>
+      <trans-unit id="searchButton"><source>Buscar</source><target>Search</target></trans-unit>
+      <trans-unit id="showingWinners"><source>Exibindo vencedores de</source><target>Showing winners from</target></trans-unit>
+      <trans-unit id="filmHeader"><source>Filme</source><target>Film</target></trans-unit>
+      <trans-unit id="studiosHeader"><source>Estúdios</source><target>Studios</target></trans-unit>
+      <trans-unit id="producersHeader"><source>Produtores</source><target>Producers</target></trans-unit>
+      <trans-unit id="searchYearEmpty"><source>Busque um ano para ver seus filmes vencedores.</source><target>Search a year to see its winning films.</target></trans-unit>
+      <trans-unit id="archiveEyebrow"><source>O arquivo completo</source><target>The complete archive</target></trans-unit>
+      <trans-unit id="moviesTitle"><source>Todos os filmes</source><target>All movies</target></trans-unit>
+      <trans-unit id="moviesSubtitle"><source>Navegue por todos os indicados e encontre os vencedores em segundos.</source><target>Browse all nominees and find winners in seconds.</target></trans-unit>
+      <trans-unit id="indexedFilms"><source>filmes indexados</source><target>indexed films</target></trans-unit>
+      <trans-unit id="yearFilter"><source>Ano</source><target>Year</target></trans-unit>
+      <trans-unit id="anyYearPlaceholder"><source>Qualquer ano</source><target>Any year</target></trans-unit>
+      <trans-unit id="winnerFilter"><source>Vencedor</source><target>Winner</target></trans-unit>
+      <trans-unit id="allFilms"><source>Todos os filmes</source><target>All movies</target></trans-unit>
+      <trans-unit id="winnersOnly"><source>Somente vencedores</source><target>Winners only</target></trans-unit>
+      <trans-unit id="nomineesOnly"><source>Somente indicados</source><target>Nominees only</target></trans-unit>
+      <trans-unit id="applyFilters"><source>Aplicar filtros</source><target>Apply filters</target></trans-unit>
+      <trans-unit id="allFilmsPlaceholder"><source>Todos os filmes</source><target>All movies</target></trans-unit>
+      <trans-unit id="moviesCaption"><source>Lista de filmes indicados e vencedores</source><target>List of nominated and winning films</target></trans-unit>
+      <trans-unit id="yearHeaderMovies"><source>Ano</source><target>Year</target></trans-unit>
+      <trans-unit id="filmHeaderMovies"><source>Filme</source><target>Film</target></trans-unit>
+      <trans-unit id="studiosHeaderMovies"><source>Estúdios</source><target>Studios</target></trans-unit>
+      <trans-unit id="producersHeaderMovies"><source>Produtores</source><target>Producers</target></trans-unit>
+      <trans-unit id="winnerHeaderMovies"><source>Vencedor</source><target>Winner</target></trans-unit>
+      <trans-unit id="noFilms"><source>Nenhum filme corresponde a esses filtros.</source><target>No film matches these filters.</target></trans-unit>
+      <trans-unit id="paginationLabel"><source>Paginação</source><target>Pagination</target></trans-unit>
+      <trans-unit id="mobilePaginationLabel"><source>Paginação mobile</source><target>Mobile pagination</target></trans-unit>
+      <trans-unit id="previousPage"><source>Anterior</source><target>Previous</target></trans-unit>
+      <trans-unit id="nextPage"><source>Próxima</source><target>Next</target></trans-unit>
+      <trans-unit id="backPage"><source>Voltar</source><target>Back</target></trans-unit>
+      <trans-unit id="forwardPage"><source>Avançar</source><target>Forward</target></trans-unit>
+      <trans-unit id="winnerOnlyLabel"><source>Somente vencedores</source><target>Winners only</target></trans-unit>
+      <trans-unit id="nomineesOnlyLabel"><source>Somente indicados</source><target>Nominees only</target></trans-unit>
+      <trans-unit id="allFilmsLabel"><source>Todos os filmes</source><target>All movies</target></trans-unit>
+      <trans-unit id="invalidYearError"><source>Informe um ano válido entre 1900 e 2100.</source><target>Enter a valid year between 1900 and 2100.</target></trans-unit>
+      <trans-unit id="moviesLoadError"><source>Não foi possível carregar o arquivo de filmes. Tente novamente.</source><target>Could not load the movie archive. Try again.</target></trans-unit>
+      <trans-unit id="yearSearchError"><source>Não foi possível buscar vencedores para este ano.</source><target>Could not find winners for this year.</target></trans-unit>
+      <trans-unit id="dashboardPartialError"><source>Alguns dados do dashboard não puderam ser carregados. Tente novamente.</source><target>Some dashboard data could not be loaded. Try again.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

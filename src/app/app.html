@@ -1,0 +1,55 @@
+<div class="app-shell flex min-h-screen bg-background max-[720px]:block">
+  <aside
+    class="sidebar flex w-[248px] shrink-0 flex-col border-r border-sidebar-border bg-sidebar p-[30px_20px_24px] text-sidebar-foreground max-[720px]:w-auto max-[720px]:border-r-0 max-[720px]:p-[18px_20px]"
+  >
+    <div
+      class="brand mb-[72px] flex items-center gap-3 mx-2 max-[720px]:mx-0 max-[720px]:mb-[18px]"
+    >
+      <span
+        class="brand-mark grid size-9 place-items-center rounded-[calc(var(--radius)-4px)] bg-primary text-[11px] font-bold text-primary-foreground"
+        >GR</span
+      ><span
+        ><strong class="block text-[13px] leading-[1.2]" i18n="@@brandName">Golden Raspberry</strong
+        ><small class="mt-1 block text-[10px] text-muted-foreground" i18n="@@brandSubtitle"
+          >Arquivo de filmes</small
+        ></span
+      >
+    </div>
+    <nav
+      class="grid gap-[5px] max-[720px]:flex max-[720px]:gap-1"
+      aria-label="Navegação principal"
+      i18n-aria-label="@@mainNavigation"
+    >
+      <a
+        class="flex items-center gap-[11px] rounded-[var(--radius)] px-3 py-[11px] text-[13px] font-semibold text-muted-foreground no-underline transition duration-200 hover:translate-x-0.5 hover:bg-accent hover:text-foreground [&.active]:bg-[color-mix(in_oklab,var(--accent)_85%,var(--foreground)_15%)] [&.active]:font-bold [&.active]:text-foreground max-[720px]:flex-1 max-[720px]:justify-center max-[720px]:px-2 max-[720px]:py-2"
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span class="w-4 text-center text-primary">◈</span
+        ><span i18n="@@dashboardNav">Dashboard</span></a
+      >
+      <a
+        class="flex items-center gap-[11px] rounded-[var(--radius)] px-3 py-[11px] text-[13px] font-semibold text-muted-foreground no-underline transition duration-200 hover:translate-x-0.5 hover:bg-accent hover:text-foreground [&.active]:bg-[color-mix(in_oklab,var(--accent)_85%,var(--foreground)_15%)] [&.active]:font-bold [&.active]:text-foreground max-[720px]:flex-1 max-[720px]:justify-center max-[720px]:px-2 max-[720px]:py-2"
+        routerLink="/movies"
+        routerLinkActive="active"
+        ><span class="w-4 text-center text-primary">▤</span
+        ><span i18n="@@moviesNav">Todos os filmes</span></a
+      >
+    </nav>
+    <div
+      class="sidebar-footer mt-auto flex items-start gap-[9px] px-2 text-[10px] leading-[1.4] text-muted-foreground max-[720px]:hidden"
+    >
+      <span class="footer-dot mt-[3px] size-[7px] rounded-full bg-primary"></span
+      ><span i18n="@@challengeFooter"
+        >Desafio Outsera<br /><small class="text-muted-foreground"
+          >Golden Raspberry Awards</small
+        ></span
+      >
+    </div>
+  </aside>
+  <main
+    class="main-content min-w-0 flex-1 bg-background p-[48px_clamp(28px,5vw,80px)] max-[720px]:p-[30px_18px]"
+  >
+    <router-outlet />
+  </main>
+</div>
