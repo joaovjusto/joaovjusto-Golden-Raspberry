@@ -1,4 +1,4 @@
-# Outsera Front-end Test
+# Golden Raspberry Awards Archive
 
 Aplicação Angular 22 para consultar a lista de indicados e vencedores da categoria Pior Filme do Golden Raspberry Awards.
 
@@ -33,18 +33,18 @@ corepack pnpm build
 ## Testes unitários
 
 ```bash
-corepack pnpm exec nx test outsera-app --watch=false
+corepack pnpm test
 ```
 
-## Checklist de entrega
+## Checklist de qualidade
 
 ```bash
 corepack pnpm install --frozen-lockfile
-corepack pnpm exec nx test outsera-app --watch=false --skip-nx-cache --outputStyle=static
-corepack pnpm exec nx build outsera-app --skip-nx-cache --outputStyle=static
+corepack pnpm test -- --watch=false --skip-nx-cache --outputStyle=static
+corepack pnpm build -- --skip-nx-cache --outputStyle=static
 ```
 
-Para decisões de arquitetura, styling, Spartan UI, internacionalização e critérios de validação, consulte [docs/frontend.md](docs/frontend.md).
+Para decisões de arquitetura, styling, Spartan UI, internacionalização e critérios de validação, consulte a [documentação de frontend](https://github.com/joaovjusto/joaovjusto-Golden-Raspberry/blob/main/docs/frontend.md).
 
 ## Funcionalidades implementadas
 
@@ -68,9 +68,9 @@ Para decisões de arquitetura, styling, Spartan UI, internacionalização e crit
 
 ## API consumida
 
-A aplicação usa os endpoints da API da Outsera:
+A aplicação consome uma API remota de filmes e premiações:
 
-- https://challenge.outsera.tech/api/movies
+- `/api/movies`
 - /yearsWithMultipleWinners
 - /studiosWithWinCount
 - /maxMinWinIntervalForProducers

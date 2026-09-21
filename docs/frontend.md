@@ -12,7 +12,7 @@ O Spartan UI é mantido como bibliotecas Helm locais em `libs/ui`. As diretivas 
 Dashboard / Movies
 	|
 	v
-MoviesApiService -> Outsera API
+MoviesApiService -> API de premiações
 	|
 	v
 Signals -> Angular templates -> Spartan UI primitives
@@ -42,7 +42,7 @@ Português (`pt-BR`) é o locale de origem, registrado por meio de `LOCALE_ID` e
 O catálogo fonte em português está versionado em `src/locale/messages.pt-BR.xlf` e o catálogo em inglês em `src/locale/messages.en-US.xlf`. Para extrair ou atualizar o catálogo fonte após alterar textos localizados:
 
 ```bash
-pnpm exec nx run outsera-app:extract-i18n
+pnpm extract-i18n
 ```
 
 O target de extração é nativo deste workspace Nx e requer Node `22.22.3+`, conforme exigido pelo Angular CLI instalado. A versão recomendada está registrada em `.nvmrc` e em `package.json#engines`. O build e os testes da aplicação não dependem da extração em runtime; o locale de origem continua sendo o português.
@@ -51,7 +51,7 @@ O catálogo é mantido intencionalmente como artefato de build sob controle de v
 
 ## Gates de qualidade
 
-Antes de abrir um pull request ou enviar o desafio:
+Antes de publicar uma alteração:
 
 1. Instale as dependências usando o lockfile.
 2. Execute os testes unitários sem cache.
@@ -59,21 +59,21 @@ Antes de abrir um pull request ou enviar o desafio:
 4. Verifique `/dashboard` e `/movies` em larguras desktop e mobile.
 5. Verifique os estados vazio, loading, erro de API, ano inválido, filtros combinados e paginação.
 
-A suíte atual cobre o contrato de consulta do serviço, o comportamento de falha parcial do dashboard, validação de ano, filtros combinados de filmes, reset da paginação, erros de API e navegação principal. Testes E2E de navegador estão intencionalmente fora do escopo atual do desafio.
+A suíte atual cobre o contrato de consulta do serviço, o comportamento de falha parcial do dashboard, validação de ano, filtros combinados de filmes, reset da paginação, erros de API e navegação principal. Testes E2E de navegador não fazem parte do escopo atual da aplicação.
 
 ## Restrições conhecidas
 
-- A API do desafio é remota, então as verificações com dados reais dependem da disponibilidade da rede.
+- A API de premiações é remota, então as verificações com dados reais dependem da disponibilidade da rede.
 - O target de extração exige a versão do Node suportada pelo Angular CLI instalado (`22.22.3+`). O fluxo de build/testes usa `pt-BR` como locale de origem.
 
 ## Verificação
 
-Execute as mesmas verificações usadas antes do envio:
+Execute as verificações de qualidade:
 
 ```bash
 pnpm install --frozen-lockfile
-pnpm exec nx test outsera-app --watch=false --skip-nx-cache --outputStyle=static
-pnpm exec nx build outsera-app --skip-nx-cache --outputStyle=static
+pnpm test -- --watch=false --skip-nx-cache --outputStyle=static
+pnpm build -- --skip-nx-cache --outputStyle=static
 ```
 
 Os testes dos componentes cobrem resiliência do dashboard, validação de ano, filtros combinados de filmes, reset da paginação, parâmetros de consulta da API e renderização da navegação principal.
