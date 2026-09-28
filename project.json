@@ -75,7 +75,7 @@
         "buildTarget": "outsera-app:build",
         "format": "xlf",
         "outputPath": "src/locale",
-        "outFile": "messages.pt-BR.xlf"
+        "outFile": "messages.en-US.xlf"
       }
     },
     "test": {

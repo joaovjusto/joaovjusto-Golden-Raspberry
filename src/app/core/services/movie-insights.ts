@@ -14,5 +14,5 @@ export function pageNumbers(currentPage: number, totalPages: number): number[] {
 }
 
 export function winnerLabel(movie: Movie): string {
-  return movie.winner ? 'Sim' : 'Não';
+  return movie.winner ? 'Yes' : 'No';
 }

@@ -4,7 +4,14 @@ import { DashboardComponent } from './dashboard';
 import { MoviesApiService } from '../core/services/movies-api.service';
 
 const yearsResponse = { years: [{ year: 1985, winnerCount: 2 }] };
-const studiosResponse = { studios: [{ name: 'Studio A', winCount: 4 }] };
+const studiosResponse = {
+  studios: [
+    { name: 'Studio A', winCount: 4 },
+    { name: 'Studio B', winCount: 9 },
+    { name: 'Studio C', winCount: 6 },
+    { name: 'Studio D', winCount: 2 },
+  ],
+};
 const intervalsResponse = {
   min: [{ producer: 'Producer A', interval: 1, previousWin: 2000, followingWin: 2001 }],
   max: [{ producer: 'Producer B', interval: 20, previousWin: 1980, followingWin: 2000 }],
@@ -38,7 +45,11 @@ describe('DashboardComponent', () => {
 
     expect(component.isLoading()).toBe(false);
     expect(component.multipleWinnerYears()).toEqual(yearsResponse.years);
-    expect(component.topStudios()).toEqual(studiosResponse.studios);
+    expect(component.topStudios()).toEqual([
+      studiosResponse.studios[1],
+      studiosResponse.studios[2],
+      studiosResponse.studios[0],
+    ]);
     expect(component.shortestIntervals()).toEqual(intervalsResponse.min);
     expect(component.longestIntervals()).toEqual(intervalsResponse.max);
   });
@@ -51,7 +62,7 @@ describe('DashboardComponent', () => {
     expect(component.isLoading()).toBe(false);
     expect(component.multipleWinnerYears()).toEqual(yearsResponse.years);
     expect(component.topStudios()).toEqual([]);
-    expect(component.errorMessage()).toContain('Alguns dados');
+    expect(component.errorMessage()).toContain('Some dashboard');
   });
 
   it('rejects invalid years without making a request', () => {
@@ -67,7 +78,7 @@ describe('DashboardComponent', () => {
     component.searchWinners();
 
     expect(requestCount).toBe(0);
-    expect(component.errorMessage()).toContain('ano válido');
+    expect(component.errorMessage()).toContain('valid year');
   });
 
   it('shows winners returned for a valid year', () => {
@@ -87,5 +98,24 @@ describe('DashboardComponent', () => {
     expect(component.winnersByYear()).toEqual(winners);
     expect(component.searchedYear()).toBe(2000);
     expect(component.isSearchingYear()).toBe(false);
+  });
+
+  it('renders the reference columns in the winners-by-year table', () => {
+    createComponent(createApi());
+
+    const tables = Array.from(
+      fixture.nativeElement.querySelectorAll('table') as NodeListOf<HTMLTableElement>,
+    );
+    const tableHeaders = tables.map((table) =>
+      Array.from(table.querySelectorAll('thead th')).map((header) => header.textContent?.trim()),
+    );
+
+    expect(tableHeaders).toEqual([
+      ['Year', 'Win Count'],
+      ['Name', 'Win Count'],
+      ['Producer', 'Interval', 'Previous Year', 'Following Year'],
+      ['Producer', 'Interval', 'Previous Year', 'Following Year'],
+      ['ID', 'Year', 'Title'],
+    ]);
   });
 });

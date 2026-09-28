@@ -22,6 +22,6 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('nav')?.textContent).toContain('Dashboard');
-    expect(compiled.querySelector('nav')?.textContent).toContain('Todos os filmes');
+    expect(compiled.querySelector('nav')?.textContent).toContain('List');
   });
 });

@@ -37,15 +37,15 @@ O Tailwind verifica os templates da aplicação por meio de `@source './app'` em
 
 ## Internacionalização
 
-Português (`pt-BR`) é o locale de origem, registrado por meio de `LOCALE_ID` e `registerLocaleData`. Textos de template exibidos ao usuário devem usar os metadados `i18n` do Angular com um `@@messageId` estável. Strings exibidas ao usuário e produzidas pelo TypeScript devem usar `$localize` com o mesmo formato explícito de message ID.
+Inglês (`en-US`) é o idioma ativo da interface, conforme os anexos da avaliação, e está definido por `LOCALE_ID`. Textos de template exibidos ao usuário devem usar os metadados `i18n` do Angular com um `@@messageId` estável. Strings exibidas ao usuário e produzidas pelo TypeScript devem usar `$localize` com o mesmo formato explícito de message ID.
 
-O catálogo fonte em português está versionado em `src/locale/messages.pt-BR.xlf` e o catálogo em inglês em `src/locale/messages.en-US.xlf`. Para extrair ou atualizar o catálogo fonte após alterar textos localizados:
+Os catálogos XLIFF em `src/locale` não estão conectados ao build nem fazem troca de idioma em runtime; a aplicação exibe o texto-fonte em inglês independentemente do idioma do navegador. O target de extração grava o catálogo-fonte em `src/locale/messages.en-US.xlf`:
 
 ```bash
 pnpm extract-i18n
 ```
 
-O target de extração é nativo deste workspace Nx e requer Node `22.22.3+`, conforme exigido pelo Angular CLI instalado. A versão recomendada está registrada em `.nvmrc` e em `package.json#engines`. O build e os testes da aplicação não dependem da extração em runtime; o locale de origem continua sendo o português.
+O target de extração é nativo deste workspace Nx e requer Node `22.22.3+`, conforme exigido pelo Angular CLI instalado. A versão recomendada está registrada em `.nvmrc` e em `package.json#engines`. Para adicionar outro idioma, configure a localização no build do Angular e mantenha um catálogo traduzido para cada locale.
 
 O catálogo é mantido intencionalmente como artefato de build sob controle de versão, em vez de introduzir um serviço de tradução em runtime para uma aplicação pequena. Para adicionar outro locale, crie um novo catálogo XLIFF e conecte-o à configuração de build do workspace Angular.
 

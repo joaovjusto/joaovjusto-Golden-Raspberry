@@ -15,7 +15,7 @@ describe('movie insights', () => {
 
   it('labels the winner state', () => {
     const winner: Movie = { id: 1, year: 2000, title: 'Film', studios: [], producers: [], winner: true };
-    expect(winnerLabel(winner)).toBe('Sim');
-    expect(winnerLabel({ ...winner, winner: false })).toBe('Não');
+    expect(winnerLabel(winner)).toBe('Yes');
+    expect(winnerLabel({ ...winner, winner: false })).toBe('No');
   });
 });

@@ -24,4 +24,41 @@ describe('MoviesApiService', () => {
     expect(request.request.params.get('winner')).toBe('true');
     request.flush({ content: [], totalElements: 0, totalPages: 0 });
   });
+
+  it('requests years with multiple winners', () => {
+    service.getYearsWithMultipleWinners().subscribe();
+
+    const request = http.expectOne((candidate) =>
+      candidate.url.endsWith('/yearsWithMultipleWinners'),
+    );
+    expect(request.request.method).toBe('GET');
+    request.flush({ years: [] });
+  });
+
+  it('requests studios with win counts', () => {
+    service.getStudiosWithWinCount().subscribe();
+
+    const request = http.expectOne((candidate) => candidate.url.endsWith('/studiosWithWinCount'));
+    expect(request.request.method).toBe('GET');
+    request.flush({ studios: [] });
+  });
+
+  it('requests producer win intervals', () => {
+    service.getProducerIntervals().subscribe();
+
+    const request = http.expectOne((candidate) =>
+      candidate.url.endsWith('/maxMinWinIntervalForProducers'),
+    );
+    expect(request.request.method).toBe('GET');
+    request.flush({ min: [], max: [] });
+  });
+
+  it('requests winners for the selected year', () => {
+    service.getWinnersByYear(2018).subscribe();
+
+    const request = http.expectOne((candidate) => candidate.url.endsWith('/winnersByYear'));
+    expect(request.request.method).toBe('GET');
+    expect(request.request.params.get('year')).toBe('2018');
+    request.flush([]);
+  });
 });

@@ -6,7 +6,7 @@
       class="eyebrow mb-[11px] text-muted-foreground font-mono text-[10px]/[1] tracking-[.08em] uppercase"
       i18n="@@dashboardEyebrow"
     >
-      Inteligência de premiações
+      Awards intelligence
     </p>
     <h1
       class="mb-3 text-[clamp(32px,4vw,48px)] leading-none tracking-[-.05em]"
@@ -15,7 +15,7 @@
       Dashboard
     </h1>
     <p class="m-0 text-[13px] text-muted-foreground" i18n="@@dashboardSubtitle">
-      Uma visão rápida dos padrões mais marcantes do Golden Raspberry Awards.
+      A quick overview of notable Golden Raspberry Awards patterns.
     </p>
   </div>
   <div
@@ -32,7 +32,7 @@
     role="status"
     i18n="@@loadingAwards"
   >
-    Carregando dados das premiações...
+    Loading awards data...
   </div>
 } @else {
   @if (errorMessage()) {
@@ -52,9 +52,11 @@
               class="panel-kicker mb-[11px] text-muted-foreground font-mono text-[10px]/[1] tracking-[.08em] uppercase"
               i18n="@@multipleWinnersKicker"
             >
-              01 / VITÓRIAS REPETIDAS
+              01 / REPEATED WINS
             </p>
-            <h2 hlmCardTitle i18n="@@multipleWinnersTitle">Anos com múltiplos vencedores</h2>
+            <h2 hlmCardTitle i18n="@@multipleWinnersTitle">
+              List years with multiple winners
+            </h2>
           </div>
           <span class="panel-count whitespace-nowrap text-muted-foreground font-mono text-[10px]">{{
             multipleWinnerYears().length
@@ -66,12 +68,12 @@
         <div hlmTableContainer>
           <table hlmTable>
             <caption hlmTableCaption class="sr-only" i18n="@@multipleWinnersCaption">
-              Anos com mais de um filme vencedor
+              Years with more than one winning film
             </caption>
             <thead hlmTableHeader>
               <tr hlmTableRow>
-                <th hlmTableHead i18n="@@yearHeader">Ano</th>
-                <th hlmTableHead i18n="@@winnerCountHeader">Quantidade de vencedores</th>
+                <th hlmTableHead i18n="@@yearHeader">Year</th>
+                <th hlmTableHead i18n="@@winnerCountHeader">Win Count</th>
               </tr>
             </thead>
             <tbody hlmTableBody>
@@ -81,7 +83,7 @@
                   <td hlmTableCell>
                     <span class="metric-value inline-flex items-baseline gap-1.5">
                       <strong>{{ item.winnerCount }}</strong>
-                      <span i18n="@@filmsLabel">filmes</span>
+                      <span i18n="@@filmsLabel">films</span>
                     </span>
                   </td>
                 </tr>
@@ -100,9 +102,11 @@
               class="panel-kicker mb-[11px] text-muted-foreground font-mono text-[10px]/[1] tracking-[.08em] uppercase"
               i18n="@@topStudiosKicker"
             >
-              02 / OS LÍDERES
+              02 / STUDIO RANKING
             </p>
-            <h2 hlmCardTitle i18n="@@topStudiosTitle">Estúdios com mais vitórias</h2>
+            <h2 hlmCardTitle i18n="@@topStudiosTitle">
+              Top 3 studios with winners
+            </h2>
           </div>
           <span
             class="panel-count whitespace-nowrap text-muted-foreground font-mono text-[10px]"
@@ -113,20 +117,23 @@
       </div>
 
       <div hlmCardContent>
-        <div class="rank-list grid">
-          @for (studio of topStudios(); track studio.name; let index = $index) {
-            <div
-              class="rank-row grid grid-cols-[34px_1fr_auto] items-center gap-2 border-b border-border py-[15px] text-[13px] last:border-b-0"
-            >
-              <span class="rank-number text-muted-foreground font-mono text-[10px]"
-                >0{{ index + 1 }}</span
-              >
-              <span>{{ studio.name }}</span>
-              <strong class="text-foreground font-mono text-[12px] font-medium">{{
-                studio.winCount
-              }}</strong>
-            </div>
-          }
+        <div hlmTableContainer>
+          <table hlmTable>
+            <thead hlmTableHeader>
+              <tr hlmTableRow>
+                <th hlmTableHead i18n="@@studioNameHeader">Name</th>
+                <th hlmTableHead i18n="@@winnerCountHeader">Win Count</th>
+              </tr>
+            </thead>
+            <tbody hlmTableBody>
+              @for (studio of topStudios(); track studio.name) {
+                <tr hlmTableRow>
+                  <td hlmTableCell>{{ studio.name }}</td>
+                  <td hlmTableCell>{{ studio.winCount }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     </hlm-card>
@@ -139,49 +146,75 @@
               class="panel-kicker mb-[11px] text-muted-foreground font-mono text-[10px]/[1] tracking-[.08em] uppercase"
               i18n="@@producerIntervalsKicker"
             >
-              03 / HISTÓRICO DE PRODUTORES
+              03 / PRODUCER HISTORY
             </p>
-            <h2 hlmCardTitle i18n="@@intervalsTitle">Intervalos entre vitórias</h2>
+            <h2 hlmCardTitle i18n="@@intervalsTitle">
+              Producers with longest and shortest interval between wins
+            </h2>
           </div>
         </div>
       </div>
 
       <div hlmCardContent>
-        <div class="interval-columns grid grid-cols-2 gap-[18px]">
+        <div class="interval-columns grid gap-[18px]">
           <div>
             <span
               class="metric-label mb-[13px] block text-muted-foreground font-mono text-[10px] uppercase"
               i18n="@@shortestLabel"
-              >Menor</span
+              >Minimum</span
             >
-            @for (item of shortestIntervals(); track item.producer) {
-              <p
-                class="interval-value m-0 mb-[13px] text-[12px] leading-[1.35] text-muted-foreground"
-              >
-                {{ item.producer }}
-                <strong class="mt-[3px] block text-foreground font-mono text-[18px] font-medium"
-                  >{{ item.interval }}a</strong
-                >
-              </p>
-            }
+            <div hlmTableContainer>
+              <table hlmTable>
+                <thead hlmTableHeader>
+                  <tr hlmTableRow>
+                    <th hlmTableHead i18n="@@producerHeader">Producer</th>
+                    <th hlmTableHead i18n="@@intervalHeader">Interval</th>
+                    <th hlmTableHead i18n="@@previousYearHeader">Previous Year</th>
+                    <th hlmTableHead i18n="@@followingYearHeader">Following Year</th>
+                  </tr>
+                </thead>
+                <tbody hlmTableBody>
+                  @for (item of shortestIntervals(); track item.producer) {
+                    <tr hlmTableRow>
+                      <td hlmTableCell>{{ item.producer }}</td>
+                      <td hlmTableCell>{{ item.interval }}</td>
+                      <td hlmTableCell>{{ item.previousWin }}</td>
+                      <td hlmTableCell>{{ item.followingWin }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <div>
             <span
               class="metric-label mb-[13px] block text-muted-foreground font-mono text-[10px] uppercase"
               i18n="@@longestLabel"
-              >Maior</span
+              >Maximum</span
             >
-            @for (item of longestIntervals(); track item.producer) {
-              <p
-                class="interval-value m-0 mb-[13px] text-[12px] leading-[1.35] text-muted-foreground"
-              >
-                {{ item.producer }}
-                <strong class="mt-[3px] block text-foreground font-mono text-[18px] font-medium"
-                  >{{ item.interval }}a</strong
-                >
-              </p>
-            }
+            <div hlmTableContainer>
+              <table hlmTable>
+                <thead hlmTableHeader>
+                  <tr hlmTableRow>
+                    <th hlmTableHead i18n="@@producerHeader">Producer</th>
+                    <th hlmTableHead i18n="@@intervalHeader">Interval</th>
+                    <th hlmTableHead i18n="@@previousYearHeader">Previous Year</th>
+                    <th hlmTableHead i18n="@@followingYearHeader">Following Year</th>
+                  </tr>
+                </thead>
+                <tbody hlmTableBody>
+                  @for (item of longestIntervals(); track item.producer) {
+                    <tr hlmTableRow>
+                      <td hlmTableCell>{{ item.producer }}</td>
+                      <td hlmTableCell>{{ item.interval }}</td>
+                      <td hlmTableCell>{{ item.previousWin }}</td>
+                      <td hlmTableCell>{{ item.followingWin }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -197,9 +230,11 @@
               class="panel-kicker mb-[11px] text-muted-foreground font-mono text-[10px]/[1] tracking-[.08em] uppercase"
               i18n="@@archiveSearchKicker"
             >
-              04 / EXPLORE O ARQUIVO
+              04 / EXPLORE THE ARCHIVE
             </p>
-            <h2 hlmCardTitle i18n="@@winnersByYearTitle">Vencedores por ano</h2>
+            <h2 hlmCardTitle i18n="@@winnersByYearTitle">
+              List movie winners by year
+            </h2>
           </div>
 
           <form
@@ -208,14 +243,14 @@
           >
             <div class="year-search-field flex items-center gap-2.5 mr-2.5">
               <label class="sr-only" for="dashboard-year" i18n="@@searchYearLabel"
-                >Buscar ano</label
+                >Search by year</label
               >
               <input
                 hlmInput
                 id="dashboard-year"
                 type="number"
                 class="m-0 h-9 w-[110px]"
-                placeholder="Ano"
+                placeholder="Search by year"
                 i18n-placeholder="@@yearPlaceholder"
                 min="1900"
                 max="2100"
@@ -227,7 +262,7 @@
               @if (isSearchingYear()) {
                 <span class="loading-orbit"></span>
               }
-              <span i18n="@@searchButton">Buscar</span>
+              <span i18n="@@searchButton">Search</span>
             </button>
           </form>
         </div>
@@ -235,42 +270,33 @@
 
       <div hlmCardContent>
         <div class="search-result-stage" [class.is-searching]="isSearchingYear()">
-          @if (searchedYear() !== null) {
-            <p class="search-result m-0 text-[12px] text-muted-foreground">
-              <span i18n="@@showingWinners">Exibindo vencedores de</span>
-              <strong class="text-foreground font-mono text-[15px] font-medium">{{
-                searchedYear()
-              }}</strong>
-            </p>
-
-            <div hlmTableContainer>
-              <table hlmTable>
-                <thead hlmTableHeader>
+          <div hlmTableContainer>
+            <table hlmTable>
+              <thead hlmTableHeader>
+                <tr hlmTableRow>
+                  <th hlmTableHead i18n="@@idHeader">ID</th>
+                  <th hlmTableHead i18n="@@yearHeader">Year</th>
+                  <th hlmTableHead i18n="@@titleHeader">Title</th>
+                </tr>
+              </thead>
+              <tbody hlmTableBody>
+                @for (movie of winnersByYear(); track movie.id) {
                   <tr hlmTableRow>
-                    <th hlmTableHead i18n="@@filmHeader">Filme</th>
-                    <th hlmTableHead i18n="@@studiosHeader">Estúdios</th>
-                    <th hlmTableHead i18n="@@producersHeader">Produtores</th>
+                    <td hlmTableCell>{{ movie.id }}</td>
+                    <td hlmTableCell>{{ movie.year }}</td>
+                    <td hlmTableCell>{{ movie.title }}</td>
                   </tr>
-                </thead>
-                <tbody hlmTableBody>
-                  @for (movie of winnersByYear(); track movie.id) {
-                    <tr hlmTableRow>
-                      <td hlmTableCell>{{ movie.title }}</td>
-                      <td hlmTableCell>{{ movie.studios.join(', ') }}</td>
-                      <td hlmTableCell>{{ movie.producers.join(', ') }}</td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
-            </div>
-          } @else {
-            <div
-              class="empty-state grid min-h-[120px] place-items-center py-[26px] text-center text-[12px] text-muted-foreground"
-              i18n="@@searchYearEmpty"
-            >
-              Busque um ano para ver seus filmes vencedores.
-            </div>
-          }
+                }
+                @if (searchedYear() !== null && winnersByYear().length === 0) {
+                  <tr hlmTableRow>
+                    <td hlmTableCell colspan="3" i18n="@@noWinnersForYear">
+                      No winners found for this year.
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </hlm-card>

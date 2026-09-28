@@ -35,6 +35,7 @@ declare const $localize: ɵLocalizeFn;
 })
 export class MoviesComponent implements OnInit {
   private readonly moviesApi = inject(MoviesApiService);
+  private readonly pageSize = 15;
 
   readonly movies = signal<Movie[]>([]);
   readonly totalElements = signal(0);
@@ -50,11 +51,11 @@ export class MoviesComponent implements OnInit {
   readonly winnerFilterLabel = (value: unknown): string => {
     switch (String(value ?? '')) {
       case 'true':
-        return $localize`:@@winnerOnlyLabel:Somente vencedores`;
+        return $localize`:@@yesLabel:Yes`;
       case 'false':
-        return $localize`:@@nomineesOnlyLabel:Somente indicados`;
+        return $localize`:@@noLabel:No`;
       default:
-        return $localize`:@@allFilmsLabel:Todos os filmes`;
+        return $localize`:@@yesNoPlaceholder:Yes/No`;
     }
   };
 
@@ -69,7 +70,7 @@ export class MoviesComponent implements OnInit {
     const sanitizedYear = this.sanitizedYear();
 
     if (sanitizedYear && !this.isValidYear(sanitizedYear)) {
-      this.filterError.set($localize`:@@invalidYearError:Informe um ano válido entre 1900 e 2100.`);
+      this.filterError.set($localize`:@@invalidYearError:Enter a valid year between 1900 and 2100.`);
       return;
     }
 
@@ -91,7 +92,7 @@ export class MoviesComponent implements OnInit {
     const sanitizedYear = this.sanitizedYear();
 
     if (sanitizedYear && !this.isValidYear(sanitizedYear)) {
-      this.filterError.set($localize`:@@invalidYearError:Informe um ano válido entre 1900 e 2100.`);
+      this.filterError.set($localize`:@@invalidYearError:Enter a valid year between 1900 and 2100.`);
       this.isLoading.set(false);
       return;
     }
@@ -103,7 +104,7 @@ export class MoviesComponent implements OnInit {
     this.isLoading.set(true);
     this.errorMessage.set('');
 
-    this.moviesApi.listMovies(this.currentPage(), 10, year, winner).subscribe({
+    this.moviesApi.listMovies(this.currentPage(), this.pageSize, year, winner).subscribe({
       next: (response: PagedResponse<Movie>) => {
         this.movies.set(response.content);
         this.totalElements.set(response.totalElements);
@@ -112,7 +113,7 @@ export class MoviesComponent implements OnInit {
       },
       error: () => {
         this.errorMessage.set(
-          $localize`:@@moviesLoadError:Não foi possível carregar o arquivo de filmes. Tente novamente.`,
+          $localize`:@@moviesLoadError:Could not load movies. Please try again.`,
         );
         this.isLoading.set(false);
       },

@@ -6,16 +6,16 @@
       class="eyebrow mb-[11px] text-muted-foreground font-mono text-[10px]/[1] tracking-[.08em] uppercase"
       i18n="@@archiveEyebrow"
     >
-      O arquivo completo
+      The full archive
     </p>
     <h1
       class="mb-3 text-[clamp(32px,4vw,48px)] leading-none tracking-[-.05em]"
       i18n="@@moviesTitle"
     >
-      Todos os filmes
+      List movies
     </h1>
     <p class="subtitle m-0 text-[13px] text-muted-foreground" i18n="@@moviesSubtitle">
-      Navegue por todos os indicados e encontre os vencedores em segundos.
+      Browse all nominees and find winners in seconds.
     </p>
   </div>
 
@@ -24,7 +24,7 @@
       <strong class="text-foreground font-mono text-[26px] font-medium">{{
         totalElements() | number
       }}</strong>
-      <span i18n="@@indexedFilms">filmes indexados</span>
+      <span i18n="@@indexedFilms">indexed movies</span>
     </span>
   </div>
 </section>
@@ -40,14 +40,14 @@
           class="text-muted-foreground font-mono text-[10px] uppercase"
           for="year-filter"
           i18n="@@yearFilter"
-          >Ano</label
+          >Year</label
         >
         <input
           hlmInput
           id="year-filter"
           type="number"
           class="min-w-[145px] max-md:w-full"
-          placeholder="Qualquer ano"
+          placeholder="Any year"
           i18n-placeholder="@@anyYearPlaceholder"
           [(ngModel)]="yearFilter"
           name="year"
@@ -59,7 +59,7 @@
           id="winner-filter-label"
           class="filter-label text-muted-foreground font-mono text-[10px] uppercase"
           i18n="@@winnerFilter"
-          >Vencedor</span
+          >Winner</span
         >
         <hlm-select
           [value]="winnerFilter"
@@ -67,28 +67,20 @@
           (valueChange)="winnerFilter = $event ?? ''"
         >
           <hlm-select-trigger aria-labelledby="winner-filter-label">
-            <hlm-select-value
-              placeholder="Todos os filmes"
-              i18n-placeholder="@@allFilmsPlaceholder"
-            />
+            <hlm-select-value placeholder="Yes/No" i18n-placeholder="@@yesNoPlaceholder" />
           </hlm-select-trigger>
-
           <hlm-select-content *hlmSelectPortal>
             <hlm-select-group>
-              <hlm-select-item value="" i18n="@@allFilms">Todos os filmes</hlm-select-item>
-              <hlm-select-item value="true" i18n="@@winnersOnly"
-                >Somente vencedores</hlm-select-item
-              >
-              <hlm-select-item value="false" i18n="@@nomineesOnly"
-                >Somente indicados</hlm-select-item
-              >
+              <hlm-select-item value="" i18n="@@allMovies">All movies</hlm-select-item>
+              <hlm-select-item value="true" i18n="@@yesLabel">Yes</hlm-select-item>
+              <hlm-select-item value="false" i18n="@@noLabel">No</hlm-select-item>
             </hlm-select-group>
           </hlm-select-content>
         </hlm-select>
       </div>
 
       <button hlmBtn class="filter-button w-full md:w-auto" type="submit" i18n="@@applyFilters">
-        Aplicar filtros
+        Apply filters
       </button>
     </form>
 
@@ -108,7 +100,7 @@
       <div hlmTableContainer class="max-h-[560px]">
         <table hlmTable class="min-w-[720px]">
           <caption hlmTableCaption class="sr-only" i18n="@@moviesCaption">
-            Lista de filmes indicados e vencedores
+            List of nominated and winning movies
           </caption>
 
           <thead hlmTableHeader>
@@ -116,37 +108,29 @@
               <th
                 hlmTableHead
                 class="font-mono text-[10px] tracking-[.05em] uppercase"
+                i18n="@@idHeader"
+              >
+                ID
+              </th>
+              <th
+                hlmTableHead
+                class="font-mono text-[10px] tracking-[.05em] uppercase"
                 i18n="@@yearHeaderMovies"
               >
-                Ano
+                Year
               </th>
               <th
                 hlmTableHead
                 class="font-mono text-[10px] tracking-[.05em] uppercase"
-                i18n="@@filmHeaderMovies"
+                i18n="@@titleHeader"
               >
-                Filme
-              </th>
-              <th
-                hlmTableHead
-                class="font-mono text-[10px] tracking-[.05em] uppercase"
-                i18n="@@studiosHeaderMovies"
-              >
-                Estúdios
-              </th>
-              <th
-                hlmTableHead
-                class="font-mono text-[10px] tracking-[.05em] uppercase"
-                i18n="@@producersHeaderMovies"
-              >
-                Produtores
+                Title
               </th>
               <th
                 hlmTableHead
                 class="whitespace-nowrap font-mono text-[10px] tracking-[.05em] uppercase"
-                i18n="@@winnerHeaderMovies"
               >
-                Vencedor
+                Winner?
               </th>
             </tr>
           </thead>
@@ -157,26 +141,19 @@
                 <td
                   hlmTableCell
                   class="table-message p-[38px] text-center text-muted-foreground"
-                  colspan="5"
+                  colspan="4"
                   i18n="@@noFilms"
                 >
-                  Nenhum filme corresponde a esses filtros.
+                  No movies match these filters.
                 </td>
               </tr>
             } @else {
               @for (movie of movies(); track movie.id) {
                 <tr hlmTableRow>
+                  <td hlmTableCell class="align-top">{{ movie.id }}</td>
                   <td hlmTableCell class="max-w-[220px] align-top">{{ movie.year }}</td>
                   <td hlmTableCell class="max-w-[220px] align-top font-semibold text-foreground">
                     {{ movie.title }}
-                  </td>
-                  <td hlmTableCell class="max-w-[220px] align-top">
-                    {{ studioNames(movie.studios) }}
-                  </td>
-                  <td hlmTableCell class="max-w-[220px] align-top">
-                    <div class="max-w-[220px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      {{ producerNames(movie.producers) }}
-                    </div>
                   </td>
                   <td hlmTableCell class="max-w-[220px] align-top whitespace-nowrap">
                     <span hlmBadge [variant]="movie.winner ? 'default' : 'outline'">
@@ -194,7 +171,7 @@
     @if (totalPages() > 1) {
       <nav
         class="pagination hidden items-center justify-between pt-5 text-muted-foreground font-mono text-[10px] md:flex [&_button.active]:border-[#111] [&_button.active]:bg-[#111] [&_button.active]:text-white [&_button.active]:shadow-[inset_0_0_0_1px_rgba(255,255,255,.08)]"
-        aria-label="Paginação"
+        aria-label="Pagination"
         i18n-aria-label="@@paginationLabel"
       >
         <button
@@ -204,7 +181,7 @@
           [disabled]="currentPage() === 0"
           (click)="goToPage(currentPage() - 1)"
         >
-          <span i18n="@@previousPage">Anterior</span>
+          <span i18n="@@previousPage">Previous</span>
         </button>
 
         @for (page of pageNumbers(currentPage(), totalPages()); track page) {
@@ -226,13 +203,13 @@
           [disabled]="currentPage() >= totalPages() - 1"
           (click)="goToPage(currentPage() + 1)"
         >
-          <span i18n="@@nextPage">Próxima</span>
+          <span i18n="@@nextPage">Next</span>
         </button>
       </nav>
 
       <nav
         class="pagination flex w-full items-center justify-between gap-3 pt-5 text-muted-foreground font-mono text-[10px] md:hidden"
-        aria-label="Paginação mobile"
+        aria-label="Mobile pagination"
         i18n-aria-label="@@mobilePaginationLabel"
       >
         <button
@@ -243,7 +220,7 @@
           [disabled]="currentPage() === 0"
           (click)="goToPage(currentPage() - 1)"
         >
-          <span i18n="@@backPage">Voltar</span>
+          <span i18n="@@backPage">Previous</span>
         </button>
 
         <button
@@ -254,7 +231,7 @@
           [disabled]="currentPage() >= totalPages() - 1"
           (click)="goToPage(currentPage() + 1)"
         >
-          <span i18n="@@forwardPage">Avançar</span>
+          <span i18n="@@forwardPage">Next</span>
         </button>
       </nav>
     }

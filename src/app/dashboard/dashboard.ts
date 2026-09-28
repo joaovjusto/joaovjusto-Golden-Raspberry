@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
     const year = Number(this.yearInput);
     if (!Number.isInteger(year) || year < 1900 || year > 2100) {
       this.errorMessage.set(
-        $localize`:@@invalidYearError:Informe um ano válido entre 1900 e 2100.`,
+        $localize`:@@invalidYearError:Enter a valid year between 1900 and 2100.`,
       );
       return;
     }
@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
       },
       error: () => {
         this.errorMessage.set(
-          $localize`:@@yearSearchError:Não foi possível buscar vencedores para este ano.`,
+          $localize`:@@yearSearchError:Could not load winners for this year.`,
         );
         this.isSearchingYear.set(false);
       },
@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit {
       )
       .subscribe({
         next: ({ studios }) => {
-          this.topStudios.set(studios.slice(0, 3));
+          this.topStudios.set([...studios].sort((first, second) => second.winCount - first.winCount).slice(0, 3));
           this.completePanelRequest();
         },
       });
@@ -152,7 +152,7 @@ export class DashboardComponent implements OnInit {
 
       if (this.panelRequestsFailed > 0) {
         this.errorMessage.set(
-          $localize`:@@dashboardPartialError:Alguns dados do dashboard não puderam ser carregados. Tente novamente.`,
+          $localize`:@@dashboardPartialError:Some dashboard data could not be loaded. Please try again.`,
         );
       }
     }
